@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5841E74CB1E00AE9B69 /* DSViewController.m */; };
 		815F20531E6DD49E00242688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20521E6DD49E00242688 /* main.m */; };
 		815F20561E6DD49E00242688 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20551E6DD49E00242688 /* AppDelegate.m */; };
 		815F20591E6DD49E00242688 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20581E6DD49E00242688 /* ViewController.m */; };
 		815F205C1E6DD49E00242688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815F205A1E6DD49E00242688 /* Main.storyboard */; };
 		815F205E1E6DD49E00242688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815F205D1E6DD49E00242688 /* Assets.xcassets */; };
 		815F20611E6DD49E00242688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815F205F1E6DD49E00242688 /* LaunchScreen.storyboard */; };
-		815F206A1E6DD4C300242688 /* DSHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20691E6DD4C300242688 /* DSHuman.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C10A5831E74CB1E00AE9B69 /* DSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSViewController.h; sourceTree = "<group>"; };
+		2C10A5841E74CB1E00AE9B69 /* DSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSViewController.m; sourceTree = "<group>"; };
 		815F204E1E6DD49E00242688 /* DSProfileClasswork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSProfileClasswork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		815F20521E6DD49E00242688 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		815F20541E6DD49E00242688 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -27,8 +29,6 @@
 		815F205D1E6DD49E00242688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		815F20601E6DD49E00242688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		815F20621E6DD49E00242688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		815F20681E6DD4C300242688 /* DSHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSHuman.h; sourceTree = "<group>"; };
-		815F20691E6DD4C300242688 /* DSHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSHuman.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +65,13 @@
 				815F20551E6DD49E00242688 /* AppDelegate.m */,
 				815F20571E6DD49E00242688 /* ViewController.h */,
 				815F20581E6DD49E00242688 /* ViewController.m */,
+				2C10A5831E74CB1E00AE9B69 /* DSViewController.h */,
+				2C10A5841E74CB1E00AE9B69 /* DSViewController.m */,
 				815F205A1E6DD49E00242688 /* Main.storyboard */,
 				815F205D1E6DD49E00242688 /* Assets.xcassets */,
 				815F205F1E6DD49E00242688 /* LaunchScreen.storyboard */,
 				815F20621E6DD49E00242688 /* Info.plist */,
 				815F20511E6DD49E00242688 /* Supporting Files */,
-				815F20681E6DD4C300242688 /* DSHuman.h */,
-				815F20691E6DD4C300242688 /* DSHuman.m */,
 			);
 			path = DSProfileClasswork;
 			sourceTree = "<group>";
@@ -156,10 +156,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815F206A1E6DD4C300242688 /* DSHuman.m in Sources */,
 				815F20591E6DD49E00242688 /* ViewController.m in Sources */,
 				815F20561E6DD49E00242688 /* AppDelegate.m in Sources */,
 				815F20531E6DD49E00242688 /* main.m in Sources */,
+				2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +316,7 @@
 				815F20671E6DD49E00242688 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
