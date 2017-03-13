@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5841E74CB1E00AE9B69 /* DSViewController.m */; };
+		81123CE01E771CFD0014A620 /* DSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 81123CDF1E771CFD0014A620 /* DSPerson.m */; };
 		815F20531E6DD49E00242688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20521E6DD49E00242688 /* main.m */; };
 		815F20561E6DD49E00242688 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20551E6DD49E00242688 /* AppDelegate.m */; };
 		815F20591E6DD49E00242688 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20581E6DD49E00242688 /* ViewController.m */; };
@@ -19,6 +20,8 @@
 /* Begin PBXFileReference section */
 		2C10A5831E74CB1E00AE9B69 /* DSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSViewController.h; sourceTree = "<group>"; };
 		2C10A5841E74CB1E00AE9B69 /* DSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSViewController.m; sourceTree = "<group>"; };
+		81123CDE1E771CFD0014A620 /* DSPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPerson.h; sourceTree = "<group>"; };
+		81123CDF1E771CFD0014A620 /* DSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerson.m; sourceTree = "<group>"; };
 		815F204E1E6DD49E00242688 /* DSProfileClasswork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSProfileClasswork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		815F20521E6DD49E00242688 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		815F20541E6DD49E00242688 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81123CDD1E771CD60014A620 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81123CDE1E771CFD0014A620 /* DSPerson.h */,
+				81123CDF1E771CFD0014A620 /* DSPerson.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		815F20451E6DD49E00242688 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +73,7 @@
 		815F20501E6DD49E00242688 /* DSProfileClasswork */ = {
 			isa = PBXGroup;
 			children = (
+				81123CDD1E771CD60014A620 /* Models */,
 				815F20541E6DD49E00242688 /* AppDelegate.h */,
 				815F20551E6DD49E00242688 /* AppDelegate.m */,
 				815F20571E6DD49E00242688 /* ViewController.h */,
@@ -159,6 +172,7 @@
 				815F20591E6DD49E00242688 /* ViewController.m in Sources */,
 				815F20561E6DD49E00242688 /* AppDelegate.m in Sources */,
 				815F20531E6DD49E00242688 /* main.m in Sources */,
+				81123CE01E771CFD0014A620 /* DSPerson.m in Sources */,
 				2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

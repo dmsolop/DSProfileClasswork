@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DSViewController.h"
+#import "DSPerson.h"
 
 @interface ViewController ()
 
@@ -59,7 +60,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showUserInfo"]) {
-        self.controller = [segue destinationViewController];
+       // self.controller = [segue destinationViewController];
         self.controller.firstName = self.firstNameField.text;
         self.controller.lastName = self.lastNameField.text;
         self.controller.age = self.ageField.text;
