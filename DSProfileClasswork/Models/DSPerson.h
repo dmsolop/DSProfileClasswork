@@ -10,10 +10,10 @@
 
 @interface DSPerson : NSObject
 
-@property (copy, nonatomic) NSString *firstName;
-@property (copy, nonatomic) NSString *lastName;
-@property (copy, nonatomic) NSString *country;
-@property (copy, nonatomic) NSString *age;
-@property (copy, nonatomic) NSString *sex;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *country;
+@property (strong, nonatomic) NSString *age;
+@property (strong, nonatomic) NSString *sex;
 
 @end

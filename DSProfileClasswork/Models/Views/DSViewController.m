@@ -7,6 +7,7 @@
 //
 
 #import "DSViewController.h"
+#import "DSPerson.h"
 
 @interface DSViewController ()
 
@@ -18,11 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.firstNameOutlet.text = self.firstName;
-    self.lastNameOutlet.text = self.lastName;
-    self.ageOutlet.text = self.age;
-    self.sexOutlet.text = self.sex;
-    self.countryOutlet.text = self.country;
+    DSPerson *person = [DSPerson singleTonePerson];
+    self.firstNameOutlet.text = person.firstName;
+    self.lastNameOutlet.text = person.lastName;
+    self.ageOutlet.text = person.age;
+    self.sexOutlet.text = person.sex;
+    self.countryOutlet.text = person.country;
 }
 
 - (void)didReceiveMemoryWarning {

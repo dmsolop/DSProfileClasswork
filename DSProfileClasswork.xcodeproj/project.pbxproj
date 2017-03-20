@@ -7,27 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5841E74CB1E00AE9B69 /* DSViewController.m */; };
+		2C10A5961E7C0B1B00AE9B69 /* DSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5931E7C0B1B00AE9B69 /* DSViewController.m */; };
+		2C10A5971E7C0B1B00AE9B69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5951E7C0B1B00AE9B69 /* ViewController.m */; };
+		2C10A59B1E7C0B7200AE9B69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A59A1E7C0B7200AE9B69 /* AppDelegate.m */; };
+		2C10A59E1E7C0D0800AE9B69 /* DSViewControllerKB.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A59D1E7C0D0800AE9B69 /* DSViewControllerKB.m */; };
+		2C10A5A11E7DD8FF00AE9B69 /* DSLocalBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5A01E7DD8FF00AE9B69 /* DSLocalBase.m */; };
 		81123CE01E771CFD0014A620 /* DSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 81123CDF1E771CFD0014A620 /* DSPerson.m */; };
 		815F20531E6DD49E00242688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20521E6DD49E00242688 /* main.m */; };
-		815F20561E6DD49E00242688 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20551E6DD49E00242688 /* AppDelegate.m */; };
-		815F20591E6DD49E00242688 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20581E6DD49E00242688 /* ViewController.m */; };
 		815F205C1E6DD49E00242688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815F205A1E6DD49E00242688 /* Main.storyboard */; };
 		815F205E1E6DD49E00242688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815F205D1E6DD49E00242688 /* Assets.xcassets */; };
 		815F20611E6DD49E00242688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815F205F1E6DD49E00242688 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C10A5831E74CB1E00AE9B69 /* DSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSViewController.h; sourceTree = "<group>"; };
-		2C10A5841E74CB1E00AE9B69 /* DSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSViewController.m; sourceTree = "<group>"; };
+		2C10A5921E7C0B1B00AE9B69 /* DSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSViewController.h; sourceTree = "<group>"; };
+		2C10A5931E7C0B1B00AE9B69 /* DSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSViewController.m; sourceTree = "<group>"; };
+		2C10A5941E7C0B1B00AE9B69 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2C10A5951E7C0B1B00AE9B69 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2C10A5991E7C0B7200AE9B69 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2C10A59A1E7C0B7200AE9B69 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2C10A59C1E7C0D0800AE9B69 /* DSViewControllerKB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSViewControllerKB.h; sourceTree = "<group>"; };
+		2C10A59D1E7C0D0800AE9B69 /* DSViewControllerKB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSViewControllerKB.m; sourceTree = "<group>"; };
+		2C10A59F1E7DD8FF00AE9B69 /* DSLocalBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalBase.h; sourceTree = "<group>"; };
+		2C10A5A01E7DD8FF00AE9B69 /* DSLocalBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLocalBase.m; sourceTree = "<group>"; };
 		81123CDE1E771CFD0014A620 /* DSPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPerson.h; sourceTree = "<group>"; };
 		81123CDF1E771CFD0014A620 /* DSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerson.m; sourceTree = "<group>"; };
 		815F204E1E6DD49E00242688 /* DSProfileClasswork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSProfileClasswork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		815F20521E6DD49E00242688 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		815F20541E6DD49E00242688 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		815F20551E6DD49E00242688 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		815F20571E6DD49E00242688 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		815F20581E6DD49E00242688 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		815F205B1E6DD49E00242688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		815F205D1E6DD49E00242688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		815F20601E6DD49E00242688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,11 +51,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C10A5911E7C0B1B00AE9B69 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C10A5921E7C0B1B00AE9B69 /* DSViewController.h */,
+				2C10A5931E7C0B1B00AE9B69 /* DSViewController.m */,
+				2C10A5941E7C0B1B00AE9B69 /* ViewController.h */,
+				2C10A5951E7C0B1B00AE9B69 /* ViewController.m */,
+				2C10A59C1E7C0D0800AE9B69 /* DSViewControllerKB.h */,
+				2C10A59D1E7C0D0800AE9B69 /* DSViewControllerKB.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2C10A5981E7C0B7200AE9B69 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				2C10A5991E7C0B7200AE9B69 /* AppDelegate.h */,
+				2C10A59A1E7C0B7200AE9B69 /* AppDelegate.m */,
+			);
+			name = Delegates;
+			path = DSProfileClasswork/Delegates;
+			sourceTree = SOURCE_ROOT;
+		};
 		81123CDD1E771CD60014A620 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				81123CDE1E771CFD0014A620 /* DSPerson.h */,
 				81123CDF1E771CFD0014A620 /* DSPerson.m */,
+				2C10A59F1E7DD8FF00AE9B69 /* DSLocalBase.h */,
+				2C10A5A01E7DD8FF00AE9B69 /* DSLocalBase.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -74,12 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				81123CDD1E771CD60014A620 /* Models */,
-				815F20541E6DD49E00242688 /* AppDelegate.h */,
-				815F20551E6DD49E00242688 /* AppDelegate.m */,
-				815F20571E6DD49E00242688 /* ViewController.h */,
-				815F20581E6DD49E00242688 /* ViewController.m */,
-				2C10A5831E74CB1E00AE9B69 /* DSViewController.h */,
-				2C10A5841E74CB1E00AE9B69 /* DSViewController.m */,
+				2C10A5911E7C0B1B00AE9B69 /* Views */,
+				2C10A5981E7C0B7200AE9B69 /* Delegates */,
 				815F205A1E6DD49E00242688 /* Main.storyboard */,
 				815F205D1E6DD49E00242688 /* Assets.xcassets */,
 				815F205F1E6DD49E00242688 /* LaunchScreen.storyboard */,
@@ -169,11 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815F20591E6DD49E00242688 /* ViewController.m in Sources */,
-				815F20561E6DD49E00242688 /* AppDelegate.m in Sources */,
+				2C10A5971E7C0B1B00AE9B69 /* ViewController.m in Sources */,
+				2C10A5961E7C0B1B00AE9B69 /* DSViewController.m in Sources */,
 				815F20531E6DD49E00242688 /* main.m in Sources */,
 				81123CE01E771CFD0014A620 /* DSPerson.m in Sources */,
-				2C10A5851E74CB1E00AE9B69 /* DSViewController.m in Sources */,
+				2C10A59E1E7C0D0800AE9B69 /* DSViewControllerKB.m in Sources */,
+				2C10A59B1E7C0B7200AE9B69 /* AppDelegate.m in Sources */,
+				2C10A5A11E7DD8FF00AE9B69 /* DSLocalBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

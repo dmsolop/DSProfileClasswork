@@ -1,16 +1,16 @@
 //
-//  ViewController.m
+//  DSViewControllerKB.m
 //  DSProfileClasswork
 //
-//  Created by ios on 06.03.17.
+//  Created by Дмитрий Солоп on 17.03.17.
 //  Copyright © 2017 ios. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "DSViewControllerKB.h"
 #import "DSViewController.h"
 #import "DSPerson.h"
 
-@interface ViewController ()
+@interface DSViewControllerKB ()
 
 @property (weak, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
 @property (weak, nonatomic) IBOutlet UIButton *printButtonOutlet;
@@ -21,7 +21,7 @@
 
 
 
-@implementation ViewController
+@implementation DSViewControllerKB
 
 #pragma mark - InitializationView
 
@@ -54,13 +54,14 @@
     self.sexField.text = self.sexSwitchOutlet.on ? @"Man" : @"Women";
 }
 
+
 - (IBAction)actionButton:(UIButton *)sender {
     [self performSegueWithIdentifier:@"showUserInfo" sender:sender];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showUserInfo"]) {
-       // self.controller = [segue destinationViewController];
+        self.controller = [segue destinationViewController];
         self.controller.firstName = self.firstNameField.text;
         self.controller.lastName = self.lastNameField.text;
         self.controller.age = self.ageField.text;
@@ -86,7 +87,7 @@
 - (void) unSubscribToKeyboardNotifications {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self];
-   }
+}
 
 - (void) keyboardDidChange:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
