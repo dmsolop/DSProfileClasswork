@@ -9,14 +9,16 @@
 #import "ViewController.h"
 #import "DSViewController.h"
 #import "DSLocalBase.h"
+#import "DSPickerDateController.h"
+#import "DSPickerCountryController.h"
 
 @interface ViewController ()
-
+{
+    UITextField *activeField;
+    UIScrollView *scrollView;
+}
 @property (weak, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
-//@property (weak, nonatomic) IBOutlet UIButton *printButtonOutlet;
-//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraint;
-//@property (assign, nonatomic) const float initialValueBottomConstraint;
-@property (weak, nonatomic) DSViewController *controller;
+
 @end
 
 @implementation ViewController{
@@ -30,7 +32,6 @@
     self.firstNameField.textContentType = UITextContentTypeName;
     self.lastNameField.textContentType = UITextContentTypeFamilyName;
     self.countryField.textContentType = UITextContentTypeCountryName;
-//  self.initialValueBottomConstraint = self.bottomViewConstraint.constant;
     
     NSArray *arraySubviews = self.view.subviews;
     for (UIView *view in arraySubviews) {
@@ -77,23 +78,20 @@
     self.sexField.text = self.sexSwitchOutlet.on ? @"Man" : @"Women";
 }
 
-
 - (IBAction)actionButton:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"showUserInfo" sender:sender];
+    base = [DSLocalBase singleToneLocalBase];
+    base.firstName = self.firstNameField.text;
+    base.lastName = self.lastNameField.text;
+    base.age = [self.ageField.text integerValue];
+    base.sex = self.sexField.text;
+    base.country = self.countryField.text;
+    [base addPersonToList];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showUserInfo"]) {
-        self.controller = [segue destinationViewController];
-        base = [DSLocalBase singleToneLocalBase];
-        base.person.firstName = self.controller.firstName = self.firstNameField.text;
-        base.person.lastName = self.controller.lastName = self.lastNameField.text;
-        base.person.age = self.controller.age = self.ageField.text;
-        base.person.sex = self.controller.sex = self.sexField.text;
-        base.person.country = self.controller.country = self.countryField.text;
-        [base makeListOfPersons];
-    }
+- (IBAction)ageFieldWillActive:(UITextField *)sender {
+[self performSegueWithIdentifier:@"SeguDatePicker" sender:sender];
 }
+
 
 #pragma mark - Notifications
 
@@ -118,7 +116,7 @@
     NSDictionary *info = [aNotification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 60, 0.0);
     scrollView.contentInset = contentInsets;
     scrollView.scrollIndicatorInsets = contentInsets;
     
@@ -145,20 +143,20 @@
     activeField = textField;
 }
 
-- (void) textFieldDidEndEditing:(UITextField *)textField
-{
+- (void) textFieldDidEndEditing:(UITextField *)textField{
     activeField = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField isEqual:self.firstNameField] ? [self.lastNameField becomeFirstResponder] :
-    [textField isEqual:self.lastNameField] ? [self.ageField becomeFirstResponder] :
-    [textField isEqual:self.ageField] ? [self.countryField becomeFirstResponder] :
+    [textField isEqual:self.lastNameField] ? [self.ageField resignFirstResponder] :
+   // [textField isEqual:self.ageField] ? [self.countryField becomeFirstResponder] :
     [textField resignFirstResponder];
     return YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     if ([textField isEqual:self.firstNameField] || [textField isEqual:self.lastNameField] || [textField isEqual:self.countryField]) {
         NSCharacterSet *validationSet = [[NSCharacterSet letterCharacterSet] invertedSet];
         NSArray *components = [string componentsSeparatedByCharactersInSet:validationSet];
@@ -170,13 +168,21 @@
         NSArray *components = [string componentsSeparatedByCharactersInSet:validationSet];
         if ([components count] > 1) return NO;
         NSString *resultString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        return [resultString length] <= 2;
+        NSInteger ageRange = [resultString integerValue];
+        if (ageRange < 0 || ageRange > 150 || [resultString length] > 3) return NO;
     }
     return YES;
 }
 
 - (IBAction)touchFieldView:(id)sender {
     if (activeField) [activeField resignFirstResponder];
+}
+
+#pragma mark - Input methods
+
+- (BOOL)resignFirstResponder {
+    
+    return YES;
 }
 
 @end

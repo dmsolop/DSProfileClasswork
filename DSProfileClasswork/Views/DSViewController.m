@@ -7,7 +7,6 @@
 //
 
 #import "DSViewController.h"
-#import "DSViewControllerKB.h"
 #import "DSLocalBase.h"
 #import "DSPerson.h"
 
@@ -19,11 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     base = [DSLocalBase singleToneLocalBase];
-    self.firstNameOutlet.text = base.listOfPersons[0].firstName;
-    self.lastNameOutlet.text = base.listOfPersons[0].lastName;
-    self.ageOutlet.text = base.listOfPersons[0].age;
-    self.sexOutlet.text = base.listOfPersons[0].sex;
-    self.countryOutlet.text = base.listOfPersons[0].country;
+    self.firstNameOutlet.text = base.firstName;
+    self.lastNameOutlet.text = base.lastName;
+    self.ageOutlet.text = [NSString stringWithFormat:@"%ld", base.age];
+    self.sexOutlet.text = base.sex;
+    self.countryOutlet.text = base.country;
 }
 
 - (void)didReceiveMemoryWarning {

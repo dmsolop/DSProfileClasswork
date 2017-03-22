@@ -7,13 +7,15 @@
 //
 
 #import "DSLocalBase.h"
+#import "DSPerson.h"
 
 @implementation DSLocalBase
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        self.person = [DSPerson new];
+        _listOfPersons = [NSMutableArray arrayWithCapacity:1];
     }
     return self;
 }
@@ -27,14 +29,20 @@
     return base;
 }
 
-- (void) makeListOfPersons {
-    [self.listOfPersons insertObject:self.person atIndex:0];
+- (void) addPersonToList {
+    DSPerson *person = [DSPerson new];
+    person.firstName = self.firstName;
+    person.lastName = self.lastName;
+    person.sex = self.sex;
+    person.age = self.age;
+    person.country = self.country;
+    [self.listOfPersons addObject:person];
 }
 
 - (void) printBase {
     NSInteger index = 0;
-    for (DSPerson *person in self.listOfPersons) {
-        NSLog(@"Person %ld\nfirst name: %@\nlast anme: %@age: %@\nsex: %@\ncountry: %@", index, person.firstName, person.lastName, person.age, person.sex, person.country);
+    for (DSPerson *per in self.listOfPersons) {
+        NSLog(@"Person %ld\nfirst name: %@\nlast anme: %@age: %ld\nsex: %@\ncountry: %@", index, per.firstName, per.lastName, per.age, per.sex, per.country);
         index ++;
     }
 }
