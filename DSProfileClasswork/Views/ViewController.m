@@ -136,6 +136,10 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if ([textField isEqual:self.ageField]) {
+        [self performSegueWithIdentifier:@"ShowDatePicker" sender:nil];
+        return NO;
+    }
     return  YES;
 }
 
@@ -150,7 +154,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField isEqual:self.firstNameField] ? [self.lastNameField becomeFirstResponder] :
     [textField isEqual:self.lastNameField] ? [self.ageField resignFirstResponder] :
-   // [textField isEqual:self.ageField] ? [self.countryField becomeFirstResponder] :
+    [textField isEqual:self.ageField] ? [self.countryField becomeFirstResponder] :
     [textField resignFirstResponder];
     return YES;
 }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DSPickerDateController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *close;
 
 @end

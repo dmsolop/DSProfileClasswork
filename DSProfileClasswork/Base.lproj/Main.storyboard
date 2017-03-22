@@ -84,7 +84,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" keyboardAppearance="alert" returnKeyType="next"/>
                                                 <connections>
-                                                    <action selector="ageFieldWillActive:" destination="NzE-Cn-83b" eventType="editingDidBegin" id="N0T-7D-PAt"/>
+                                                    <segue destination="wIg-pe-aOz" kind="presentation" identifier="ShowDatePicker" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="Z0c-Tl-f79"/>
                                                 </connections>
                                             </textField>
                                             <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVL-y4-VRL">
@@ -226,6 +226,7 @@
                             <constraint firstItem="HJ8-0g-C0G" firstAttribute="top" secondItem="Iv3-CG-deW" secondAttribute="bottom" id="fHL-eZ-5gU"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="ageField" destination="mCN-0P-owC" id="6rd-uL-UCp"/>
                         <outlet property="countryField" destination="2Vh-a7-o0B" id="Q3l-0C-J0t"/>
@@ -233,17 +234,15 @@
                         <outlet property="lastNameField" destination="QcI-0T-HV4" id="lSv-If-rJO"/>
                         <outlet property="sexField" destination="hNg-ne-dCW" id="0O4-M8-MwF"/>
                         <outlet property="sexSwitchOutlet" destination="qVL-y4-VRL" id="XG8-0t-R3g"/>
-                        <segue destination="wIg-pe-aOz" kind="presentation" identifier="SeguDatePicker" id="e7M-du-1O6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX0-Fx-5jx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="133"/>
+            <point key="canvasLocation" x="-323" y="115"/>
         </scene>
         <!--Picker Country Controller-->
         <scene sceneID="2k8-ae-gvT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OZT-OT-OoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Esu-fv-2wc" customClass="DSPickerCountryController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KdH-0c-ZAp"/>
@@ -271,6 +270,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="216"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OZT-OT-OoU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="444" y="667"/>
         </scene>
@@ -283,35 +283,56 @@
                         <viewControllerLayoutGuide type="bottom" id="tzC-OG-p5G"/>
                     </layoutGuides>
                     <view key="view" contentMode="bottom" id="Atj-Uj-Ayh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <datePicker contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EaB-e2-Bic">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                <color key="backgroundColor" red="0.83170761729034892" green="0.99595612287521362" blue="0.96698129034675218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <date key="date" timeIntervalSinceReferenceDate="511753124.24914402">
-                                    <!--2017-03-21 01:38:44 +0000-->
-                                </date>
-                                <locale key="locale" localeIdentifier="uk_UA"/>
-                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SS7-CJ-ipZ">
+                                <rect key="frame" x="16" y="8" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="closeClicked:" destination="wIg-pe-aOz" eventType="touchUpInside" id="Wbx-XD-kw6"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TY9-L8-PkX">
+                                <rect key="frame" x="0.0" y="352" width="320" height="216"/>
+                                <subviews>
+                                    <datePicker contentMode="bottom" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EaB-e2-Bic">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                        <color key="backgroundColor" red="0.83170761729034892" green="0.99595612287521362" blue="0.96698129034675218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="dhD-k6-CsJ"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="511753124.24914402">
+                                            <!--2017-03-21 01:38:44 +0000-->
+                                        </date>
+                                        <locale key="locale" localeIdentifier="uk_UA"/>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EaB-e2-Bic" secondAttribute="bottom" id="41P-qM-oGf"/>
+                                    <constraint firstAttribute="trailing" secondItem="EaB-e2-Bic" secondAttribute="trailing" id="7G7-q2-ax0"/>
+                                    <constraint firstItem="EaB-e2-Bic" firstAttribute="top" secondItem="TY9-L8-PkX" secondAttribute="top" id="JDf-hV-oiw"/>
+                                    <constraint firstItem="EaB-e2-Bic" firstAttribute="leading" secondItem="TY9-L8-PkX" secondAttribute="leading" id="lff-27-HSa"/>
+                                    <constraint firstAttribute="height" constant="216" id="x9b-F0-Gis"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="EaB-e2-Bic" secondAttribute="trailing" id="GKQ-xd-nlO"/>
-                            <constraint firstItem="tzC-OG-p5G" firstAttribute="top" secondItem="EaB-e2-Bic" secondAttribute="bottom" id="Uke-bj-qNH"/>
-                            <constraint firstItem="EaB-e2-Bic" firstAttribute="top" secondItem="H43-mA-gmw" secondAttribute="bottom" id="ltA-U4-hnD"/>
-                            <constraint firstItem="EaB-e2-Bic" firstAttribute="leading" secondItem="Atj-Uj-Ayh" secondAttribute="leading" id="rfl-GT-rmw"/>
+                            <constraint firstAttribute="trailing" secondItem="TY9-L8-PkX" secondAttribute="trailing" id="ZeA-v8-yVT"/>
+                            <constraint firstItem="TY9-L8-PkX" firstAttribute="leading" secondItem="Atj-Uj-Ayh" secondAttribute="leading" id="hJ2-Ko-GCj"/>
+                            <constraint firstItem="tzC-OG-p5G" firstAttribute="top" secondItem="TY9-L8-PkX" secondAttribute="bottom" id="iCi-J7-xdG"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="216"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ml-tY-E6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="667"/>
+            <point key="canvasLocation" x="-369.375" y="870.42253521126759"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="eqw-cF-KGD">

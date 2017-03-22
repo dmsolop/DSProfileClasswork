@@ -18,5 +18,8 @@
     [super viewDidLoad];
 }
 
+- (IBAction)closeClicked:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
