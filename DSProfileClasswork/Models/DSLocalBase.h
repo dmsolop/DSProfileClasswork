@@ -16,6 +16,7 @@
 @property (copy, nonatomic) NSString *sex;
 @property (copy, nonatomic) NSString *country;
 @property (assign, nonatomic) NSInteger age;
+@property (copy, nonatomic) NSDate *dateOfBirth;
 @property (copy, nonatomic) NSMutableArray <DSPerson*> *listOfPersons;
 
 

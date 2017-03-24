@@ -9,15 +9,18 @@
 #import "ViewController.h"
 #import "DSViewController.h"
 #import "DSLocalBase.h"
-#import "DSPickerDateController.h"
-#import "DSPickerCountryController.h"
 
-@interface ViewController ()
+
+@interface ViewController () 
 {
     UITextField *activeField;
     UIScrollView *scrollView;
 }
-@property (weak, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
+@property (strong, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
+@property (strong, nonatomic) IBOutlet DSPickerDateController *birthdayPicker;
+@property (strong, nonatomic) IBOutlet DSPickerCountryController *countryPicker;
+@property (assign, nonatomic) NSInteger bottomPickerOffset;
+@property (strong, nonatomic)  NSDate *dateOfBirth;
 
 @end
 
@@ -32,6 +35,7 @@
     self.firstNameField.textContentType = UITextContentTypeName;
     self.lastNameField.textContentType = UITextContentTypeFamilyName;
     self.countryField.textContentType = UITextContentTypeCountryName;
+    
     
     NSArray *arraySubviews = self.view.subviews;
     for (UIView *view in arraySubviews) {
@@ -59,6 +63,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.birthdayPicker.delegate = self;
+
     [self subscribToKeyboardNotifications];
 }
 
@@ -70,6 +76,7 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self unSubscribToKeyboardNotifications];
+    self.birthdayPicker.delegate = self;
 }
 
 #pragma mark - Actions
@@ -82,15 +89,15 @@
     base = [DSLocalBase singleToneLocalBase];
     base.firstName = self.firstNameField.text;
     base.lastName = self.lastNameField.text;
-    base.age = [self.ageField.text integerValue];
     base.sex = self.sexField.text;
     base.country = self.countryField.text;
+    base.dateOfBirth = self.dateOfBirth;
     [base addPersonToList];
 }
 
-- (IBAction)ageFieldWillActive:(UITextField *)sender {
-[self performSegueWithIdentifier:@"SeguDatePicker" sender:sender];
-}
+//- (IBAction)ageFieldWillActive:(UITextField *)sender {
+//[self performSegueWithIdentifier:@"SeguDatePicker" sender:sender];
+//}
 
 
 #pragma mark - Notifications
@@ -137,6 +144,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if ([textField isEqual:self.ageField]) {
+
         [self performSegueWithIdentifier:@"ShowDatePicker" sender:nil];
         return NO;
     }
@@ -153,8 +161,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField isEqual:self.firstNameField] ? [self.lastNameField becomeFirstResponder] :
-    [textField isEqual:self.lastNameField] ? [self.ageField resignFirstResponder] :
-    [textField isEqual:self.ageField] ? [self.countryField becomeFirstResponder] :
+    [textField isEqual:self.lastNameField] ? [self.countryField becomeFirstResponder] :
     [textField resignFirstResponder];
     return YES;
 }
@@ -182,11 +189,16 @@
     if (activeField) [activeField resignFirstResponder];
 }
 
-#pragma mark - Input methods
+#pragma mark - PickerDateDelegateMethods
 
-- (BOOL)resignFirstResponder {
-    
-    return YES;
+- (void) didPushButtonWithBirthday:(DSPickerDateController*)dateController {
+    self.dateOfBirth = dateController.datePicker.date;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear fromDate:self.dateOfBirth toDate:[NSDate date] options:0];
+    NSDateFormatter *dateForm = [[NSDateFormatter alloc] init];
+    [dateForm setDateFormat:@"dd MMMM yyyy"];
+    self.ageField.text = [dateForm stringFromDate:self.dateOfBirth];
+    base.age = components.year;
 }
 
 @end

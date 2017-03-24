@@ -16,5 +16,6 @@
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *sex;
 @property (assign, nonatomic) NSInteger age;
+@property (strong, nonatomic) NSDate *dateOfBirth;
 
 @end
