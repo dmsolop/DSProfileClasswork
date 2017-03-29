@@ -18,5 +18,9 @@
     [super viewDidLoad];
 }
 
+- (IBAction)acceptButton:(id)sender {
+    [self.delegate didPushButtonWithCountry:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

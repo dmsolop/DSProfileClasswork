@@ -10,7 +10,7 @@
 #import "DSPickerDateController.h"
 #import "DSPickerCountryController.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate, DSPickerDateControllerDelegate>
+@interface ViewController : UIViewController <UITextFieldDelegate, DSPickerDateControllerDelegate, DSPickerCountryControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *firstNameField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameField;

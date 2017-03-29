@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DSPickerCountryControllerDelegate;
+
 @interface DSPickerCountryController : UIViewController
+
+@property (weak, nonatomic) id <DSPickerCountryControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIPickerView *countryPickerOutlet;
+
+@end
+
+@protocol DSPickerCountryControllerDelegate <NSObject>
+
+- (void) didPushButtonWithCountry:(DSPickerCountryController*)countryController;
 
 @end

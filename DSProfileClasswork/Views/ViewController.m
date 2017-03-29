@@ -10,17 +10,27 @@
 #import "DSViewController.h"
 #import "DSLocalBase.h"
 
+static const CGFloat DSPickerDateHeight = 306.f;
+static const CGFloat DSAnimationDuration = 0.5;
 
-@interface ViewController () 
-{
+@interface ViewController (){
     UITextField *activeField;
-    UIScrollView *scrollView;
+    NSInteger fullAge;
 }
-@property (strong, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
-@property (strong, nonatomic) IBOutlet DSPickerDateController *birthdayPicker;
-@property (strong, nonatomic) IBOutlet DSPickerCountryController *countryPicker;
+
+@property (strong, nonatomic) DSPickerDateController *birthdayPicker;
+@property (strong, nonatomic) DSPickerCountryController *countryPicker;
+
 @property (assign, nonatomic) NSInteger bottomPickerOffset;
-@property (strong, nonatomic)  NSDate *dateOfBirth;
+@property (strong, nonatomic) NSDate *dateOfBirth;
+@property (strong, nonatomic) NSArray *countries;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintDateView;
+@property (weak, nonatomic) IBOutlet UIView *datePickerView;
+@property (weak, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textFields;
 
 @end
 
@@ -36,35 +46,18 @@
     self.lastNameField.textContentType = UITextContentTypeFamilyName;
     self.countryField.textContentType = UITextContentTypeCountryName;
     
-    
-    NSArray *arraySubviews = self.view.subviews;
-    for (UIView *view in arraySubviews) {
-        if ([view isKindOfClass:[UIScrollView class]]) {
-            scrollView = (UIScrollView*)view;
-            break;
-        }
+//    self.bottomConstraintDateView.constant = -DSPickerDateHeight;
+//    [self.view superview];
+    [self.view bringSubviewToFront:self.datePickerView];
+    [self.view layoutIfNeeded];
+    for (UITextField * textField in self.textFields){
+        textField.delegate = self;
     }
-    if (scrollView) {
-        UIView *contentView = scrollView.subviews[0];
-        CGRect frameView = [contentView frame];
-        scrollView.contentSize = frameView.size;
-        if ([contentView isKindOfClass:[UIControl class]]) {
-            [(UIControl*)contentView addTarget:self action:@selector(touchFieldView:) forControlEvents:UIControlEventTouchDown];
-        }
-        NSArray *arraySubviewsOfContentView = contentView.subviews;
-        for (id editOrNo in arraySubviewsOfContentView) {
-            if ([editOrNo isKindOfClass:[UITextField class]]) {
-                UITextField *tField = editOrNo;
-                [tField setDelegate:self];
-            }
-        }
-    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.birthdayPicker.delegate = self;
-
     [self subscribToKeyboardNotifications];
 }
 
@@ -76,7 +69,6 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self unSubscribToKeyboardNotifications];
-    self.birthdayPicker.delegate = self;
 }
 
 #pragma mark - Actions
@@ -92,13 +84,9 @@
     base.sex = self.sexField.text;
     base.country = self.countryField.text;
     base.dateOfBirth = self.dateOfBirth;
+    base.age = fullAge;
     [base addPersonToList];
 }
-
-//- (IBAction)ageFieldWillActive:(UITextField *)sender {
-//[self performSegueWithIdentifier:@"SeguDatePicker" sender:sender];
-//}
-
 
 #pragma mark - Notifications
 
@@ -124,35 +112,42 @@
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height + 60, 0.0);
-    scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
     
     CGRect aRect = self.view.frame;
     aRect.size.height -= keyboardSize.height;
     if (!CGRectContainsPoint(aRect, activeField.frame.origin)){
-        [scrollView scrollRectToVisible:activeField.frame animated:YES];
+        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
     }
 }
 
 - (void) keyboardWillBeHidden:(NSNotification*)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    scrollView.contentInset = contentInsets;
-    scrollView.scrollIndicatorInsets = contentInsets;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if ([textField isEqual:self.ageField]) {
+    activeField = textField;
+    if ([textField isEqual:self.countryField]) {
+        [self performSegueWithIdentifier:@"ShowCountryPicker" sender:nil];
+        return NO;
+    }else if ([textField isEqual:self.ageField]) {
+        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, DSPickerDateHeight - 100, 0);
+        [UIView animateWithDuration:DSAnimationDuration animations:^{
+            [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentSize.width - 1,
+                                                            self.scrollView.contentSize.height - 1, 1, 1) animated:YES];
 
-        [self performSegueWithIdentifier:@"ShowDatePicker" sender:nil];
+        }];
+        self.bottomConstraintDateView.constant = DSPickerDateHeight;
+
+        [self.view endEditing:YES];
         return NO;
     }
-    return  YES;
-}
-
-- (void) textFieldDidBeginEditing:(UITextField *)textField {
-    activeField = textField;
+    return YES;
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField{
@@ -161,7 +156,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField isEqual:self.firstNameField] ? [self.lastNameField becomeFirstResponder] :
-    [textField isEqual:self.lastNameField] ? [self.countryField becomeFirstResponder] :
     [textField resignFirstResponder];
     return YES;
 }
@@ -185,11 +179,19 @@
     return YES;
 }
 
-- (IBAction)touchFieldView:(id)sender {
-    if (activeField) [activeField resignFirstResponder];
-}
+//- (IBAction)touchFieldView:(id)sender {
+//    if (activeField) [activeField resignFirstResponder];
+//}
 
-#pragma mark - PickerDateDelegateMethods
+#pragma mark - PickerDelegateMethods
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    id destinationController = [segue destinationViewController];
+    if ([destinationController isKindOfClass:[DSPickerCountryController class]]) {
+        self.countryPicker = destinationController;
+        self.countryPicker.delegate = self;
+    }
+}
 
 - (void) didPushButtonWithBirthday:(DSPickerDateController*)dateController {
     self.dateOfBirth = dateController.datePicker.date;
@@ -198,7 +200,12 @@
     NSDateFormatter *dateForm = [[NSDateFormatter alloc] init];
     [dateForm setDateFormat:@"dd MMMM yyyy"];
     self.ageField.text = [dateForm stringFromDate:self.dateOfBirth];
-    base.age = components.year;
+    fullAge = components.year;
+}
+
+- (void) didPushButtonWithCountry:(DSPickerCountryController*)countryController {
+    
+    //self.countryField.text = countryController.countryPickerOutlet.coun
 }
 
 @end
