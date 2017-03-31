@@ -10,7 +10,7 @@
 #import "DSViewController.h"
 #import "DSLocalBase.h"
 
-static const CGFloat DSPickerDateHeight = 306.f;
+static const CGFloat DSPickersDownPosition = 306.f;
 static const CGFloat DSAnimationDuration = 0.5;
 
 @interface ViewController (){
@@ -18,13 +18,14 @@ static const CGFloat DSAnimationDuration = 0.5;
     NSInteger fullAge;
 }
 
-@property (strong, nonatomic) DSPickerDateController *birthdayPicker;
-@property (strong, nonatomic) DSPickerCountryController *countryPicker;
-
-@property (assign, nonatomic) NSInteger bottomPickerOffset;
 @property (strong, nonatomic) NSDate *dateOfBirth;
-@property (strong, nonatomic) NSArray *countries;
+@property (strong, nonatomic) NSArray *countriesArray;
+@property (strong, nonatomic) NSString *selectedCountry;
 
+@property (weak, nonatomic) IBOutlet UIView *countryPickerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintCountryView;
+@property (weak, nonatomic) IBOutlet UIPickerView *countryPickerOutlet;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePickerOutlet;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintDateView;
 @property (weak, nonatomic) IBOutlet UIView *datePickerView;
 @property (weak, nonatomic) IBOutlet UISwitch *sexSwitchOutlet;
@@ -46,14 +47,15 @@ static const CGFloat DSAnimationDuration = 0.5;
     self.lastNameField.textContentType = UITextContentTypeFamilyName;
     self.countryField.textContentType = UITextContentTypeCountryName;
     
-//    self.bottomConstraintDateView.constant = -DSPickerDateHeight;
-//    [self.view superview];
-    [self.view bringSubviewToFront:self.datePickerView];
-    [self.view layoutIfNeeded];
+    self.bottomConstraintCountryView.constant = - DSPickersDownPosition;
+    self.bottomConstraintDateView.constant = - DSPickersDownPosition;
+    
+    self.countriesArray = [NSLocale ISOCountryCodes];
+    self.countryPickerOutlet.delegate = self;
+    
     for (UITextField * textField in self.textFields){
         textField.delegate = self;
     }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,7 +90,25 @@ static const CGFloat DSAnimationDuration = 0.5;
     [base addPersonToList];
 }
 
-#pragma mark - Notifications
+- (IBAction)didPushButtonWithBirthday:(id)sender {
+    
+    self.dateOfBirth = self.datePickerOutlet.date;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear fromDate:self.dateOfBirth toDate:[NSDate date] options:0];
+    NSDateFormatter *dateForm = [[NSDateFormatter alloc] init];
+    [dateForm setDateFormat:@"dd MMMM yyyy"];
+    self.ageField.text = [dateForm stringFromDate:self.dateOfBirth];
+    fullAge = components.year;
+    
+    [self pickersHide];
+}
+
+- (IBAction)didPushButtonWithCountry:(id)sender {
+    self.countryField.text = self.selectedCountry;
+    [self pickersHide];
+}
+
+#pragma mark - NSNotificationCenter Methods
 
 - (void) subscribToKeyboardNotifications {
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -128,25 +148,16 @@ static const CGFloat DSAnimationDuration = 0.5;
     self.scrollView.scrollIndicatorInsets = contentInsets;
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - UITextFieldDelegate Methods
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     activeField = textField;
-    if ([textField isEqual:self.countryField]) {
-        [self performSegueWithIdentifier:@"ShowCountryPicker" sender:nil];
-        return NO;
-    }else if ([textField isEqual:self.ageField]) {
-        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, DSPickerDateHeight - 100, 0);
-        [UIView animateWithDuration:DSAnimationDuration animations:^{
-            [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentSize.width - 1,
-                                                            self.scrollView.contentSize.height - 1, 1, 1) animated:YES];
-
-        }];
-        self.bottomConstraintDateView.constant = DSPickerDateHeight;
-
+    if ([textField isEqual:self.ageField] || [textField isEqual:self.countryField]) {
+        [self pickersShow];
         [self.view endEditing:YES];
         return NO;
     }
+    [self pickersHide];
     return YES;
 }
 
@@ -179,33 +190,49 @@ static const CGFloat DSAnimationDuration = 0.5;
     return YES;
 }
 
-//- (IBAction)touchFieldView:(id)sender {
-//    if (activeField) [activeField resignFirstResponder];
-//}
+#pragma mark - UIPickerViewDataSource Methods
 
-#pragma mark - PickerDelegateMethods
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    id destinationController = [segue destinationViewController];
-    if ([destinationController isKindOfClass:[DSPickerCountryController class]]) {
-        self.countryPicker = destinationController;
-        self.countryPicker.delegate = self;
-    }
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
 }
 
-- (void) didPushButtonWithBirthday:(DSPickerDateController*)dateController {
-    self.dateOfBirth = dateController.datePicker.date;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear fromDate:self.dateOfBirth toDate:[NSDate date] options:0];
-    NSDateFormatter *dateForm = [[NSDateFormatter alloc] init];
-    [dateForm setDateFormat:@"dd MMMM yyyy"];
-    self.ageField.text = [dateForm stringFromDate:self.dateOfBirth];
-    fullAge = components.year;
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.countriesArray.count;
 }
 
-- (void) didPushButtonWithCountry:(DSPickerCountryController*)countryController {
+#pragma mark - UIPickerViewDelegate Methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:self.countriesArray[row]];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.selectedCountry = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:self.countriesArray[row]];
+}
+
+#pragma mark - UIPickerViewShowHide Methods
+
+- (void) pickersHide {
+    self.bottomConstraintCountryView.constant = - DSPickersDownPosition;
+    self.bottomConstraintDateView.constant = - DSPickersDownPosition;
+    [UIView animateWithDuration:DSAnimationDuration animations:^{
+        self.scrollView.contentInset = UIEdgeInsetsZero;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void) pickersShow {
+    [UIView animateWithDuration:DSAnimationDuration animations:^{
+        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, DSPickersDownPosition - 100, 0);
+        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentSize.width - 1,
+                                                        self.scrollView.contentSize.height - 1, 1, 1) animated:YES];
+    }];
+        [activeField isEqual:self.ageField] ?
+    (self.bottomConstraintDateView.constant = 0,
+     self.bottomConstraintCountryView.constant = - DSPickersDownPosition) :
+    (self.bottomConstraintCountryView.constant = 0,
+     self.bottomConstraintDateView.constant = - DSPickersDownPosition);
     
-    //self.countryField.text = countryController.countryPickerOutlet.coun
 }
 
 @end

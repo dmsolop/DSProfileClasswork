@@ -35,6 +35,7 @@
     person.lastName = self.lastName;
     person.sex = self.sex;
     person.age = self.age;
+    person.dateOfBirth = self.dateOfBirth;
     person.country = self.country;
     [self.listOfPersons addObject:person];
 }
@@ -42,7 +43,7 @@
 - (void) printBase {
     NSInteger index = 0;
     for (DSPerson *per in self.listOfPersons) {
-        NSLog(@"Person %ld\nfirst name: %@\nlast anme: %@age: %ld\nsex: %@\ncountry: %@", index, per.firstName, per.lastName, per.age, per.sex, per.country);
+        NSLog(@"Person %ld\nfirst name: %@\nlast anme: %@\nbirthday: %@\nage: %ld\nsex: %@\ncountry: %@", index, per.firstName, per.lastName, per.dateOfBirth, per.age, per.sex, per.country);
         index ++;
     }
 }

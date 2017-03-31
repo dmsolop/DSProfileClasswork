@@ -11,8 +11,6 @@
 		2C10A5971E7C0B1B00AE9B69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5951E7C0B1B00AE9B69 /* ViewController.m */; };
 		2C10A59B1E7C0B7200AE9B69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A59A1E7C0B7200AE9B69 /* AppDelegate.m */; };
 		2C10A5A11E7DD8FF00AE9B69 /* DSLocalBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5A01E7DD8FF00AE9B69 /* DSLocalBase.m */; };
-		2C10A5A41E80BA4800AE9B69 /* DSPickerDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5A31E80BA4800AE9B69 /* DSPickerDateController.m */; };
-		2C10A5A71E80BD2500AE9B69 /* DSPickerCountryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10A5A61E80BD2500AE9B69 /* DSPickerCountryController.m */; };
 		81123CE01E771CFD0014A620 /* DSPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 81123CDF1E771CFD0014A620 /* DSPerson.m */; };
 		815F20531E6DD49E00242688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F20521E6DD49E00242688 /* main.m */; };
 		815F205C1E6DD49E00242688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 815F205A1E6DD49E00242688 /* Main.storyboard */; };
@@ -29,10 +27,6 @@
 		2C10A59A1E7C0B7200AE9B69 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2C10A59F1E7DD8FF00AE9B69 /* DSLocalBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalBase.h; sourceTree = "<group>"; };
 		2C10A5A01E7DD8FF00AE9B69 /* DSLocalBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLocalBase.m; sourceTree = "<group>"; };
-		2C10A5A21E80BA4800AE9B69 /* DSPickerDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPickerDateController.h; sourceTree = "<group>"; };
-		2C10A5A31E80BA4800AE9B69 /* DSPickerDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPickerDateController.m; sourceTree = "<group>"; };
-		2C10A5A51E80BD2500AE9B69 /* DSPickerCountryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPickerCountryController.h; sourceTree = "<group>"; };
-		2C10A5A61E80BD2500AE9B69 /* DSPickerCountryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPickerCountryController.m; sourceTree = "<group>"; };
 		81123CDE1E771CFD0014A620 /* DSPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPerson.h; sourceTree = "<group>"; };
 		81123CDF1E771CFD0014A620 /* DSPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPerson.m; sourceTree = "<group>"; };
 		815F204E1E6DD49E00242688 /* DSProfileClasswork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSProfileClasswork.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,10 +55,6 @@
 				2C10A5931E7C0B1B00AE9B69 /* DSViewController.m */,
 				2C10A5941E7C0B1B00AE9B69 /* ViewController.h */,
 				2C10A5951E7C0B1B00AE9B69 /* ViewController.m */,
-				2C10A5A21E80BA4800AE9B69 /* DSPickerDateController.h */,
-				2C10A5A31E80BA4800AE9B69 /* DSPickerDateController.m */,
-				2C10A5A51E80BD2500AE9B69 /* DSPickerCountryController.h */,
-				2C10A5A61E80BD2500AE9B69 /* DSPickerCountryController.m */,
 			);
 			name = ViewControllers;
 			path = Views;
@@ -203,9 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C10A5971E7C0B1B00AE9B69 /* ViewController.m in Sources */,
-				2C10A5A41E80BA4800AE9B69 /* DSPickerDateController.m in Sources */,
 				2C10A5961E7C0B1B00AE9B69 /* DSViewController.m in Sources */,
-				2C10A5A71E80BD2500AE9B69 /* DSPickerCountryController.m in Sources */,
 				815F20531E6DD49E00242688 /* main.m in Sources */,
 				81123CE01E771CFD0014A620 /* DSPerson.m in Sources */,
 				2C10A59B1E7C0B7200AE9B69 /* AppDelegate.m in Sources */,
